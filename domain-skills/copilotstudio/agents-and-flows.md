@@ -66,3 +66,18 @@
   not an invoice-currency budget: inspect prepaid versus PAYG billing before
   interpreting the amount as money, and do not change the shared allocation to
   implement a single-agent guardrail.
+
+## Publishing workflow graph migrations
+
+- The modern workflow page has Review > Ready to publish validation and may
+  display Publishing for a while. Validate the executing runtime separately;
+  the Dataverse modification timestamp alone can refer to a draft write.
+- Publish recompiles graph metadata: canvas measured dimensions, connector
+  output schema aliases/titles, and the node-to-action mapping can change.
+  Compare executable WDL actions exactly (apart from standard injected auth),
+  plus connection references and trigger scope. If comparing the full graph,
+  whitelist only observed non-executable differences, not every metadata field.
+- The Teams connector's ListRepliesToMessage operation takes groupId,
+  channelId, messageId and optional $top (1–50; default 20). It is distinct from
+  GetMessageDetails for the thread root. A bounded reply result is not proof of
+  complete conversation history; preserve that limitation in downstream input.
