@@ -41,6 +41,10 @@
   create a real mention entity.
 - Confirm the composer closes and the new post is visible before assuming Post
   succeeded. An open suggestion popup may consume the first click.
+- Adding a bot mention can upgrade the inline quick-reply editor to the full
+  editor. Its send control changes from `data-tid=sendMessageCommands-send` to
+  `data-tid=newMessageCommands-send`; re-inspect the visible Send button rather
+  than retaining the old selector. Confirm a structured mention is present.
 - A new root post gives a clean test request. Record its message ID and verify
   that the delivery reply references that same request and intended channel.
 - Channel action repetitions may not appear through run-history APIs until the
