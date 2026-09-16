@@ -85,3 +85,17 @@
   channelId, messageId and optional $top (1–50; default 20). It is distinct from
   GetMessageDetails for the thread root. A bounded reply result is not proof of
   complete conversation history; preserve that limitation in downstream input.
+
+## AI Builder document prompts
+
+- Prompt editors contain input chips as well as text. Select only the instruction
+  text when replacing it; keep file and text input chips intact and verify the
+  input definitions before saving.
+- Save can create a new active AI configuration and compile code-interpreter
+  instructions. A green save banner alone does not prove that the compiled code
+  changed. Check the model's active configuration and both instruction text and
+  compiled code when authorized diagnostics are available, then invoke the saved
+  model with a known input and inspect the generated file.
+- Keep an acknowledgement-only smoke-test instruction out of a production
+  material-generation prompt. A request for real material can itself contain a
+  test marker; verify the actual output type, not only a successful flow status.
