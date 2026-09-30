@@ -30,9 +30,13 @@ First click Replace on the intended listed skill. Setting files without choosing
 
 The chat editor is a Lexical contenteditable with `aria-label="Type your message"`. Typing `@` opens a skill-selection list; select the visible matching skill and verify that the mention was committed before appending the request. The send button has `aria-label="Send"`.
 
+Custom skill suggestions were observed as `[role="option"][value="<skill-name>"]`. A committed mention becomes a noneditable Lexical decorator. If coordinate selection repeatedly fails, use the visible option's stable value in the Copilot frame, then place the caret at the end of the contenteditable before inserting the remaining prompt. An uncommitted partial mention can otherwise leave the skill-name suffix at the end of the prompt.
+
 A message visible in the composer is still unsent. Verify a new “You said” entry and a running Copilot response. Multi-step edits can take several minutes and show changing reasoning statuses. Wait for the finished reply and enabled composer before downloading the result.
 
 When keyboard focus or coordinate sending repeatedly fails after iframe attachment, focus the actual contenteditable in the Copilot frame and dispatch input to that frame's CDP session. Re-check the top-level screenshot after the action. Do not infer submission from a click alone.
+
+The local daemon's selected CDP session is shared by clients with the same `BU_NAME`. If multiple harness processes may be active on the machine, use a task-specific daemon name and explicitly switch to the task's existing tab. This isolates harness session selection while keeping the user's browser/profile. Avoid changing download behaviour for unrelated work; restore the browser default when finished.
 
 ## Download and validation
 
