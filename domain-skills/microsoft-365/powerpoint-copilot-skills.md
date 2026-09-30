@@ -6,6 +6,8 @@ PowerPoint web editing commonly lives inside a SharePoint/OneDrive `/_layouts/15
 
 Coordinate clicks normally cross these frames. After DOM/CDP work on a child target, explicitly switch back to the top-level document before taking a screenshot or continuing coordinate interaction. Re-screenshot to verify the active surface.
 
+When several PowerPoint tabs are open, a global first-URL match can select another tab's Copilot iframe. The observed `Target.getTargets` entries expose `parentFrameId`: the Copilot target's parent is the editor iframe, whose parent is the top-level document target. Follow that ancestry to the intended page before attaching to a child. The top-level `Page.getFrameTree` did not include these out-of-process descendants in the observed session.
+
 ## Personal custom-skill management
 
 In Copilot, the plus menu exposes Choose skills and management of plug-ins and skills. The Custom Skills section can create the personal OneDrive Skills folder when it does not exist. Global Custom Skills and individual entries have separate enabled states; uploading alone does not prove a skill is active.
@@ -33,6 +35,8 @@ Each Replace button has an observed `aria-label="Replace <skill-name>"`. If coor
 The chat editor is a Lexical contenteditable with `aria-label="Type your message"`. Typing `@` opens a skill-selection list; select the visible matching skill and verify that the mention was committed before appending the request. The send button has `aria-label="Send"`.
 
 Custom skill suggestions were observed as `[role="option"][value="<skill-name>"]`. A committed mention becomes a noneditable Lexical decorator. If coordinate selection repeatedly fails, use the visible option's stable value in the Copilot frame, then place the caret at the end of the contenteditable before inserting the remaining prompt. An uncommitted partial mention can otherwise leave the skill-name suffix at the end of the prompt.
+
+On a newly opened Copilot pane, the suggestions may initially show loading placeholders. Wait for the actual matching label and description before selection. Verify a `[data-lexical-decorator][contenteditable="false"]` child in the composer after selecting, before adding the task text. An early selection attempt can leave plain `@name` text that sends without a committed skill chip. Enabled skills may still be selected automatically, but that is different from proving explicit selection in a test.
 
 A message visible in the composer is still unsent. Verify a new “You said” entry and a running Copilot response. Multi-step edits can take several minutes and show changing reasoning statuses. Wait for the finished reply and enabled composer before downloading the result.
 
