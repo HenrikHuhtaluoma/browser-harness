@@ -26,6 +26,8 @@ input[data-testid="manage-skills-replace-input"]
 
 First click Replace on the intended listed skill. Setting files without choosing a target produces “Replace target is unavailable.” To avoid opening a native file dialog during CDP automation, enable `Page.setInterceptFileChooserDialog` for the frame session before the visible Replace click, set the file on the hidden replacement input, then disable interception. Wait for “Uploading skill” to disappear and verify the visible entry and error state. Validate the selected package before replacing it.
 
+Each Replace button has an observed `aria-label="Replace <skill-name>"`. If coordinate interaction repeatedly misses the intended row after frame attachment, this exact label identifies the replacement target without relying on row order or accidentally choosing Delete. Verify that the target-selection error cleared before treating the upload as successful.
+
 ## Chat and task completion
 
 The chat editor is a Lexical contenteditable with `aria-label="Type your message"`. Typing `@` opens a skill-selection list; select the visible matching skill and verify that the mention was committed before appending the request. The send button has `aria-label="Send"`.
