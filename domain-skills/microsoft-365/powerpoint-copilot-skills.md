@@ -12,6 +12,10 @@ When several PowerPoint tabs are open, a global first-URL match can select anoth
 
 In Copilot, the plus menu exposes Choose skills and management of plug-ins and skills. The Custom Skills section can create the personal OneDrive Skills folder when it does not exist. Global Custom Skills and individual entries have separate enabled states; uploading alone does not prove a skill is active.
 
+Some pane versions put **Manage plug-ins & skills** under the header's **More options** menu; the composer plus button may expose file attachment instead. Use the observed visible menu rather than requiring the plus route. The editor's compact **Chat with Copilot** control was observed with `id="CopilotDAB"`, while the chat add-in may already be preloaded before the pane is visible. Attaching to that preloaded frame does not prove that its UI has opened; verify the rendered pane before composing.
+
+Custom-skill switches were observed as native `input[role="switch"]` elements. Their live `checked` property establishes state; `aria-checked` may be absent even on an enabled switch. Confirm both the global switch and the intended individual entry visually and through the actual control state.
+
 The skill upload file input is hidden:
 
 ```css
@@ -49,3 +53,4 @@ The local daemon's selected CDP session is shared by clients with the same `BU_N
 File → Create a copy → Download a copy opens a second confirmation dialog with a Download button. Selecting the menu item alone does not start the file download. Configure browser download behaviour, complete the dialog, and verify the resulting file.
 
 A completed Copilot response is not proof that formatting properties were applied. Inspect the downloaded native PowerPoint and compare relevant font-family, colour, text, shape, notes, character-spacing, line-spacing, and title-placeholder properties against the request. Distinguish font-family definitions from fonts actually available to the cloud renderer. Verify all affected slides visually in the browser as well.
+
