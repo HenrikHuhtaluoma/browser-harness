@@ -54,3 +54,18 @@ File → Create a copy → Download a copy opens a second confirmation dialog wi
 
 A completed Copilot response is not proof that formatting properties were applied. Inspect the downloaded native PowerPoint and compare relevant font-family, colour, text, shape, notes, character-spacing, line-spacing, and title-placeholder properties against the request. Distinguish font-family definitions from fonts actually available to the cloud renderer. Verify all affected slides visually in the browser as well.
 
+
+
+## Brand Kit manager and persistence
+
+The separate Microsoft 365 Copilot kit manager is at `https://m365.cloud.microsoft/create/brandkit`. Asset categories include Logos, Templates, Fonts, Colors, Images, Icons, Brand voice and Skills. Create/save a kit before filling these sections. Ownership, sharing and organization publication are separate states; adding assets does not publish an official kit.
+
+In the observed Brand Kit skill editor, a ZIP import populated only the main SKILL.md in the Instructions field, whereas a self-contained Markdown import retained its full embedded references. This differs from personal skill-package installation. Inspect the actual imported Instructions body before saving; reload, reopen each saved skill's Edit form, and compare the full body to the intended export. A listed skill name alone does not establish retained resources.
+
+An already-open PowerPoint tab can cache the kit picker. Refreshing the presentation exposed a kit created later in the manager. Select brand first, then Choose skills. The attached brand reference exposes an accessible Remove label containing the kit name. Identically named personal and kit skills may appear deduplicated; their presence alone does not prove exclusive kit retrieval.
+
+The observed manager font role selector offered Heading, Subheading and BodyText, with no dedicated accent-label role. Preserve the detailed brand rules when the UI taxonomy is broader. Editing and saving a font role can reorder cards; re-inspect the target after every save instead of relying on previous row positions.
+
+Hidden image inputs shared `data-testid="image-upload-input"` across asset categories. Inspect the enclosing accordion's category text to choose the correct input; do not assume one global upload input. Template inputs accepted presentation files, and custom font inputs accepted .ttf/.otf. Open the visible workflow and verify the saved cards after setting files.
+
+PowerPoint downloads can complete after the confirmation dialog disappears. A short fixed sleep followed by an empty directory check is insufficient evidence of failure. Poll for the complete file and validate the archive before concluding the transfer failed.
