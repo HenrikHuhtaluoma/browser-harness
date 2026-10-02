@@ -78,3 +78,10 @@ The manual Brand Kit Instructions textarea was observed with HTML `maxlength="40
 In the observed authorized update, removing the frontend maxlength during native input allowed the full body to be retained, saved and verified after reload. Avoid passing one huge Input.insertText request through a harness transport with a smaller line limit; send bounded chunks and compare the final value. Do not save partial instructions on failure. Backend persistence must be checked separately from local input success.
 
 Some kit card menu interactions completed with native pointer input after a semantic DOM click failed to open the intended Edit form. Re-screenshot the actual popup and verify the edit form's skill-name field before filling it; do not continue editing based on a menu click alone.
+
+
+### Layout copies and desktop export verification
+
+A completed web edit was observed displaying the intended repositioned panel and original SVG pattern, while desktop PowerPoint rendered the downloaded cover using the older composition. The new local layout was correctly registered in the master and assigned to the slide, but it retained the source layout name, its `p14:creationId` value and several shape creation GUIDs. A local copy with a distinct layout name and fresh layout/shape creation identifiers rendered the intended composition in desktop PowerPoint; all other package parts were retained. This demonstrates the repair as a group of changes, not which single identifier drives the desktop resolution.
+
+For layout edits, verify both the web preview and the actual downloaded deck when desktop tools are available. A valid slide-layout relationship and unchanged SVG bytes alone do not establish that the intended composition renders. Prefer native layout cloning and preserve the original source definitions. If generating OOXML layout copies directly, use distinct names/creation identifiers and valid master registration. Keep original export evidence separate from a repaired local artifact.
