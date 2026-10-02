@@ -85,3 +85,10 @@ Some kit card menu interactions completed with native pointer input after a sema
 A completed web edit was observed displaying the intended repositioned panel and original SVG pattern, while desktop PowerPoint rendered the downloaded cover using the older composition. The new local layout was correctly registered in the master and assigned to the slide, but it retained the source layout name, its `p14:creationId` value and several shape creation GUIDs. A local copy with a distinct layout name and fresh layout/shape creation identifiers rendered the intended composition in desktop PowerPoint; all other package parts were retained. This demonstrates the repair as a group of changes, not which single identifier drives the desktop resolution.
 
 For layout edits, verify both the web preview and the actual downloaded deck when desktop tools are available. A valid slide-layout relationship and unchanged SVG bytes alone do not establish that the intended composition renders. Prefer native layout cloning and preserve the original source definitions. If generating OOXML layout copies directly, use distinct names/creation identifiers and valid master registration. Keep original export evidence separate from a repaired local artifact.
+
+
+### Brand Kit image upload completion and pagination
+
+The Images counter can include pending cards immediately after file selection while a toast still says `Uploading 0/N images`. Do not treat the new count as completed persistence. Wait for the upload toast to finish, close any remaining Add images dialog, and reload the kit before checking the total.
+
+The image grid was observed paginating at 20 assets per page. A saved total above 20 can therefore coexist with only 20 `img[alt="Uploaded Asset"]` nodes. Use the visible page controls to review the remaining cards; verify loaded thumbnails across pages instead of waiting for all assets to exist in the first page's DOM. Asset counts for other accordions may finish loading later than Images after reload; wait for each required category rather than assuming all state is ready from one counter.
