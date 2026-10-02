@@ -69,3 +69,12 @@ The observed manager font role selector offered Heading, Subheading and BodyText
 Hidden image inputs shared `data-testid="image-upload-input"` across asset categories. Inspect the enclosing accordion's category text to choose the correct input; do not assume one global upload input. Template inputs accepted presentation files, and custom font inputs accepted .ttf/.otf. Open the visible workflow and verify the saved cards after setting files.
 
 PowerPoint downloads can complete after the confirmation dialog disappears. A short fixed sleep followed by an empty directory check is insufficient evidence of failure. Poll for the complete file and validate the archive before concluding the transfer failed.
+
+
+### Long Brand Kit instructions in the Edit form
+
+The manual Brand Kit Instructions textarea was observed with HTML `maxlength="4000"`, even when its saved Markdown import contained much more text. Reading its value can return the full saved body; typing a replacement through native input can silently truncate it. Check the live maxlength and compare the complete pending value before Save. A saved card and the opening paragraph do not establish completeness.
+
+In the observed authorized update, removing the frontend maxlength during native input allowed the full body to be retained, saved and verified after reload. Avoid passing one huge Input.insertText request through a harness transport with a smaller line limit; send bounded chunks and compare the final value. Do not save partial instructions on failure. Backend persistence must be checked separately from local input success.
+
+Some kit card menu interactions completed with native pointer input after a semantic DOM click failed to open the intended Edit form. Re-screenshot the actual popup and verify the edit form's skill-name field before filling it; do not continue editing based on a menu click alone.
