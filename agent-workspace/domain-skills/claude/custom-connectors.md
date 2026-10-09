@@ -7,6 +7,8 @@
 
 ## Organization registration
 
+Adding an organization connector requires an Owner account on a Team or Enterprise plan. Other members authorize available connectors individually.
+
 - **Add → Custom** is a submenu. Hover the Custom row to expose **Web** and **Desktop**, then choose Web for an HTTPS MCP server.
 - The custom connector dialog has two steps. First enter the name and MCP URL. Continuing probes the server, protected-resource metadata, and authorization provider. Wait for these probes before expecting the second step.
 - An unauthenticated MCP 401 followed by metadata 200 is normal for an OAuth server. It does not mean registration failed.
